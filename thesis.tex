@@ -1,0 +1,63 @@
+\documentclass{tongji-thesis-undergrad}
+
+\begin{document}
+\graphicspath{{figures/}}		% images path
+
+%------------- Global Settings -----
+\ctitle{论文的中文标题}
+\csubtitle{中文副标题}
+\cauthor{张三}
+\cstudentid{080000}
+\cdepartment{软件学院}
+\cmajor{软件工程}
+\csupervisor{李四}
+%\cdate{} 不用设置，默认为今天
+
+%------------- Cover Page ----------
+\begin{titlepage}
+	\makethesiscover
+\end{titlepage}
+
+%------------- Abstract ----------
+\begin{cnenabstract}
+	\input{data/abstract}	
+	\makethesisabstract
+\end{cnenabstract}
+\clearpage
+
+%------------- Table of Contents ----------
+\frontmatter
+\tableofcontents
+\clearpage
+
+%------------- Main Text ----------
+\mainmatter
+\makethesistitle
+%\makethesistitlewithauthor
+\input{data/maintext}
+\clearpage
+
+%------------- References ----------
+\begin{references}
+	% "unsrt" support the re-ordering of reference based on their occurence in the article
+	% "GBT7714-2005NLang-UTF8" for GB7714
+	\nocite*{}	 % list all uncited references
+	\bibliographystyle{ref/GBT7714-2005NLang-UTF8}
+	\bibliography{ref/references}
+\end{references}
+\clearpage
+
+%------------- Appendix ----------
+\begin{appendix}
+	\appendix
+	\input{data/appendix}
+\end{appendix}
+\clearpage
+
+%------------- Ackownledgement ----------
+\begin{acknowledgement}
+	\input{data/acknowledgement}
+\end{acknowledgement}
+\clearpage
+
+\end{document}
