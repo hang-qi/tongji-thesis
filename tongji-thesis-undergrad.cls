@@ -16,6 +16,7 @@
 \RequirePackage{bm}					% bold-style vector notation
 %------------------- Basics -------------------------
 \RequirePackage[top=3.8cm, bottom=3.8cm, left=3cm, right=3cm]{geometry}
+%\RequirePackage[top=3.8cm, bottom=3.8cm, left=3.5cm, right=2cm]{geometry}
 \RequirePackage{booktabs}			% 表格样式
 \RequirePackage{colortbl}    		% 表格颜色
 \RequirePackage[xetex,bookmarksnumbered,bookmarksopen,colorlinks,citecolor=black,linkcolor=black]{hyperref} 
@@ -33,14 +34,20 @@
 \setmonofont{Courier New}		% 英文等宽字体
 
 % CJK Fonts
-\setCJKmainfont{Adobe Song Std}	% 中文字体: 宋体
+\setCJKmainfont{宋体}	% 中文字体: 宋体 / Adobe Song Std
 \setCJKmonofont{Courier New}		% 英文等宽字体
 
 %\setCJKmainfont[BoldFont={Adobe Heiti Std}, ItalicFont={Adobe Kaiti Std}]{Adobe Song Std}
-\setCJKfamilyfont{song}{Adobe Song Std}  % 宋体
-\setCJKfamilyfont{hei}{Adobe Heiti Std}  % 黑体
-\setCJKfamilyfont{kai}{Adobe Kaiti Std}  % 楷体
-\setCJKfamilyfont{fangsong}{Adobe Fangsong Std} % 仿宋
+%\setCJKfamilyfont{song}{Adobe Song Std}  % 宋体
+%\setCJKfamilyfont{hei}{Adobe Heiti Std}  % 黑体
+%\setCJKfamilyfont{kai}{Adobe Kaiti Std}  % 楷体
+%\setCJKfamilyfont{fangsong}{Adobe Fangsong Std} % 仿宋
+
+\setCJKfamilyfont{song}{宋体}  % 宋体
+\setCJKfamilyfont{hei}{黑体}  % 黑体
+\setCJKfamilyfont{kai}{楷体}  % 楷体
+\setCJKfamilyfont{fangsong}{仿宋} % 仿宋
+
 
 \newcommand{\kai}{\CJKfamily{kai}}
 \newcommand{\fangsong}{\CJKfamily{fangsong}}
@@ -84,6 +91,31 @@
 \newcommand{\CJKtoday}{\number\year 年\number\month 月\number\day 日}
 \newcommand{\CJKnumtoday}{\CJKdigits{\the\year}年\CJKnumber{\the\month}月\CJKnumber{\the\day}日}
 
+%------------------- Algorithms & Cod ----------------
+%% Algorithms
+\RequirePackage[algoruled,lined]{algorithm2e}
+\renewcommand{\listalgorithmcfname}{算法清单}
+\renewcommand{\algorithmcfname}{算法}
+\renewcommand{\algorithmautorefname}{算法}
+\SetAlCapHSkip{2em}
+\SetAlgoCaptionSeparator{\hspace*{1em}}
+\SetAlgoSkip{bigskip}
+\setlength{\algomargin}{2em}
+\SetKw{KwContinue}{continue}
+\SetKw{KwBreak}{break}
+
+
+\SetAlCapSty{textnormal}\SetAlCapFnt{\xiaowuhao}
+\SetAlCapNameSty{textnormal}\SetAlCapNameFnt{\xiaowuhao}
+
+%% Code
+\RequirePackage{listings}
+\lstloadlanguages{[Visual]C++,[ISO]C++}
+\lstset{breaklines=true,tabsize=4,extendedchars=false,escapechar=\%}
+\lstset{basicstyle=\ttfamily\small ,frame=lines,captionpos=t}
+\renewcommand\lstlistingname{代码}
+\renewcommand\lstlistlistingname{代码}
+
 %------------------- Customized Settings --------------
 \def\thesis@define#1{
 	\expandafter\gdef\csname #1\endcsname##1{%
@@ -112,6 +144,7 @@
 \newcommand{\cnenabstractname}{中外文摘要}
 \newenvironment{cnenabstract}{%
 	%\phantomsection
+	\vspace*{1ex}
 	\section*{\cnenabstractname}
 	%\addcontentsline{toc}{section}{\cnenabstractname}
 }
@@ -304,9 +337,29 @@
 \fi
 %第三级以下单独占行的标题顺序采用 A.、B.、C....和 a. b. c....两个层次. 标题均空两格书写序号,后空一格写标题名。
 
-%Items
-%正文内的分项采用(1)(2)(3)...作序号
-%对分项中的小项采用1、2、3...作序号或数字加半括号,括号后不再加其他标点。
+% Items / Enumerate
+% 正文内的分项采用(1)(2)(3)...作序号
+% 对分项中的小项采用1、2、3...作序号或数字加半括号,括号后不再加其他标点。
+\renewcommand{\labelenumi}{（ \theenumi ）}
+\renewcommand{\labelenumii}{\theenumii ）}
+
+%\RequirePackage{enumitem}
+%\setenumerate{fullwidth,itemindent=\parindent,listparindent=\parindent,itemsep=0ex,partopsep=0pt,parsep=0ex}
+
+
+
+%\topsep 列表顶部与之前内容的额外空白，不含 \baselineskip
+%\partopsep 如果列表之前是一个空行，列表顶部的额外空白
+%\itemsep 列表各项之间额外的垂直空白
+%\parsep 一个 item 中，如果分段，段落间额外空白
+%\leftmargin 列表与左边距之间的水平距离，值为非负
+%\rightmargin 列表与右边距之间的水平距离，值为非负
+%\itemindent 每一 item 第一行的缩进
+%\listparindent 每一 item 第一行之后各行的缩进
+%\labelsep 标签盒子与每一 item 第一行文本之间距离
+%\labelwidth 标签盒子的宽度；如果标签过长，这一宽度会自动变大，直到列表的第一行文本为止
+%\makelabel{label} 生成 \item[label] 命令所要求的标签
+%\usecounter{ctr} 使用列表项目计数器 ctr，初始值为 0
 
 % Figures
 %每幅插图应有图序和图题,图序和图题应放在图位下方居中处。图序、图题采用宋体小 5 号。
@@ -334,11 +387,22 @@
 %\renewcommand{\thesubfigure}{(\alph{subfigure})}
 %\renewcommand{\thesubtable}{(\alph{subtable})}
 
-% Formulas
-%公式应居中书写,公式的编号用圆括号,放在公式右边行末,公式和编号之间不加虚线。
+% Formulas 公式应居中书写,公式的编号用圆括号,放在公式右边行末,公式和编号之间不加虚线。
 
 %------------------- Headers --------------------------
-%\RequriePackage{fancyhdr}
+\RequirePackage{fancyhdr}
+\RequirePackage{lastpage}
+\pagestyle{fancy}
+\lhead{\includegraphics[width=5cm]{tongji-text-logo.jpg}}
+\chead{}
+\makeatletter
+\rhead{\thesis@ctitle}
+\makeatother
+\lfoot{}
+\cfoot{}
+\rfoot{共\enspace\pageref{LastPage}\enspace 页 \hspace*{1em} 第\enspace\thepage\enspace 页}
+\renewcommand{\headrulewidth}{1pt}
+\renewcommand{\footrulewidth}{1pt}
 
 %------------------- Pages ----------------------------
 % \pagenumbering{num_style}, in which num_style can be:
