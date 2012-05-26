@@ -183,7 +183,7 @@
 }
 
 % Ackownledgement
-\newcommand{\ackname}{辞谢}
+\newcommand{\ackname}{谢辞}
 \newenvironment{acknowledgement}{%
     %\cleardoublepage
     \phantomsection
@@ -343,10 +343,10 @@
 \renewcommand{\labelenumi}{（ \theenumi ）}
 \renewcommand{\labelenumii}{\theenumii ）}
 
-%\RequirePackage{enumitem}
-%\setenumerate{fullwidth,itemindent=\parindent,listparindent=\parindent,itemsep=0ex,partopsep=0pt,parsep=0ex}
-
-
+\RequirePackage{enumitem}
+\setenumerate{fullwidth,itemindent=\parindent,itemsep=0ex,partopsep=0pt,parsep=0ex,topsep=0ex,listparindent=\parindent}
+\setitemize{fullwidth,itemindent=\parindent,itemsep=0pt,partopsep=0pt,parsep=0ex,topsep=0ex}
+\setdescription{fullwidth,itemindent=\parindent,itemsep=0pt,partopsep=0pt,parsep=0ex,topsep=0ex}
 
 %\topsep 列表顶部与之前内容的额外空白，不含 \baselineskip
 %\partopsep 如果列表之前是一个空行，列表顶部的额外空白
