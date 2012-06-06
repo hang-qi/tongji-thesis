@@ -15,8 +15,12 @@
 \RequirePackage{array}				% 配合tabular使用
 \RequirePackage{bm}					% bold-style vector notation
 %------------------- Basics -------------------------
-\RequirePackage[top=3.8cm, bottom=3.8cm, left=3cm, right=3cm]{geometry}
-%\RequirePackage[top=3.8cm, bottom=3.8cm, left=3.5cm, right=2cm]{geometry}
+%\RequirePackage[top=3.8cm, bottom=3.8cm, left=3cm, right=3cm]{geometry}
+\RequirePackage[top=3cm, bottom=3cm, left=3.5cm, right=2cm]{geometry}
+\setlength{\headheight}{41pt}
+\setlength{\headsep}{0.5 cm}
+\setlength{\footskip}{1 cm}
+\addtolength{\textheight}{-0.5cm}
 \RequirePackage{booktabs}			% 表格样式
 \RequirePackage{colortbl}    		% 表格颜色
 \RequirePackage[xetex,bookmarksnumbered,bookmarksopen,colorlinks,citecolor=black,linkcolor=black]{hyperref} 
@@ -112,7 +116,7 @@
 \RequirePackage{listings}
 \lstloadlanguages{[Visual]C++,[ISO]C++}
 \lstset{breaklines=true,tabsize=4,extendedchars=false,escapechar=\%}
-\lstset{basicstyle=\ttfamily\small ,frame=lines,captionpos=t}
+\lstset{basicstyle=\ttfamily\small ,frame=single,captionpos=t}
 \renewcommand\lstlistingname{代码}
 \renewcommand\lstlistlistingname{代码}
 
@@ -142,10 +146,10 @@
 
 % Abstracts and keywords
 \newcommand{\cnenabstractname}{中外文摘要}
-\newenvironment{cnenabstract}{%
+\newenvironment{cnenabstract}{%	
+	\makethesistitlewithauthor
 	%\phantomsection
-	\vspace*{1ex}
-	\section*{\cnenabstractname}
+	%\section*{\cnenabstractname}
 	%\addcontentsline{toc}{section}{\cnenabstractname}
 }
 
@@ -281,8 +285,10 @@
 			{\xiaoerhao\hei\thesis@csubtitle\par} %
 			\vskip 0.5cm    %题目和下面内容的距离
 			{\sihao\kai
-			{\thesis@cmajor\enspace}
-			{\thesis@cauthor\enspace}
+			{\thesis@cmajor}
+			\enspace
+			{\thesis@cauthor}
+			\enspace
 			{指导老师\enspace\thesis@csupervisor}}
 			\vskip 1cm    %题目和下面内容的距离
 		\end{center} %
@@ -374,6 +380,7 @@
 \setlength{\intextsep}{10pt plus 4pt minus 2pt}					% set space above and below in-line float
 \setlength{\textfloatsep}{10pt plus 4pt minus 2pt}
 
+
 % 表格、图标题注
 \RequirePackage{caption}	
 %\RequirePackage[config]{subfig}			
@@ -389,7 +396,7 @@
 
 % Formulas 公式应居中书写,公式的编号用圆括号,放在公式右边行末,公式和编号之间不加虚线。
 
-%------------------- Headers --------------------------
+%------------------- Headers & footers --------------------------
 \RequirePackage{fancyhdr}
 \RequirePackage{lastpage}
 \pagestyle{fancy}
@@ -403,6 +410,24 @@
 \rfoot{共\enspace\pageref{LastPage}\enspace 页 \hspace*{1em} 第\enspace\thepage\enspace 页}
 \renewcommand{\headrulewidth}{1pt}
 \renewcommand{\footrulewidth}{1pt}
+
+\newsavebox{\gutterline}
+\sbox{\gutterline}
+{\large%
+.................................................\enspace
+\rotatebox[origin=c]{90}{\raisebox{-0.5ex}{\wuhao 装}}\enspace
+........................\enspace
+\rotatebox[origin=c]{90}{\raisebox{-0.5ex}{\wuhao 订}}\enspace%
+........................\enspace
+\rotatebox[origin=c]{90}{\raisebox{-0.5ex}{\wuhao 线}}\enspace%
+.................................................}
+
+\fancyfoot[L]{
+\begin{picture}(1,1)
+\put(-50,340){\rotatebox[origin=c]{270}{\usebox{\gutterline}}}
+\end{picture}
+}
+
 
 %------------------- Pages ----------------------------
 % \pagenumbering{num_style}, in which num_style can be:
@@ -436,6 +461,7 @@
 \newtheorem{conjecture}{猜想}	% Conjecture
 \newtheorem{lemma}{引理}			% Lemma
 \newtheorem{definition}{定义}	% Definition
+\newtheorem{property}{性质}		% Property
 
 % For ntheorem : \RequirePackage[amsthm, thmmarks]{ntheorem}
 %\theoremheaderfont{\normalfont\rmfamily\CJKfamily{hei}}
